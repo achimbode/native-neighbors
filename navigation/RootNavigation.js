@@ -2,6 +2,7 @@ import { Notifications } from 'expo';
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
+import LandingPage from './LandingPage';
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
@@ -19,7 +20,13 @@ const RootStackNavigator = StackNavigator(
     }),
   }
 );
-
+const LandingPageNavigator = StackNavigator(
+  {
+    Main: {
+      screen: LandingPage,
+    },
+  }
+)
 export default class RootNavigator extends React.Component {
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
@@ -30,7 +37,7 @@ export default class RootNavigator extends React.Component {
   }
 
   render() {
-    return <RootStackNavigator />;
+    return <LandingPageNavigator />;
   }
 
   _registerForPushNotifications() {
