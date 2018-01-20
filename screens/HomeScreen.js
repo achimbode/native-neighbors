@@ -11,6 +11,30 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+import Messages from '../containers/ChatMessages.js';
+
+const dummyProps = {
+    username: 'Andrea',
+    color: 'fuchsia',
+    users: [
+      'Andrea': {
+        avatar_color: 'navy'
+      },
+      'Achim': {
+        avatar_color: 'navy'
+      },
+    ],
+    messages: [
+      {
+        from: 'Andrea',
+        msg: 'hello Achim',
+      },
+      {
+        from: 'Achim',
+        msg: 'hello Andrea',
+      }
+    ]
+  }
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -50,6 +74,16 @@ export default class HomeScreen extends React.Component {
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
+          </View>
+
+          <View style={styles.helpContainer}>
+            <Messages username=/>
+          </View>
+
+          <View style={styles.helpContainer}>
+            <Text style={styles.getStartedText}>
+              Added a store, honey
+            </Text>
           </View>
         </ScrollView>
 
