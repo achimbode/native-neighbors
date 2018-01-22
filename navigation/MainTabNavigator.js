@@ -40,13 +40,11 @@ export default TabNavigator(
             iconName =
               Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options';
         }
-        return (
-          <Ionicons
+        return (<Ionicons
             name={iconName}
             size={28}
             style={{ marginBottom: -3 }}
-            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-          />
+            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}/>
         );
       },
     }),

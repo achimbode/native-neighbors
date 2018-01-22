@@ -12,7 +12,7 @@ export default class LinksScreen extends React.Component {
       <ScrollView style={styles.container}>
         <Text style={styles.myText}>HI!</Text>
 
-        <GoogleAutocomplete style={styles.googleAuto}/>
+        {/* <GoogleAutocomplete style={styles.googleAuto}/> */}
 
 
         <Button
