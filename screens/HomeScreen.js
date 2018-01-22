@@ -77,7 +77,11 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.helpContainer}>
-            <Messages username=/>
+            <Messages
+            username={dummyProps.username}
+            color={dummyProps.color}
+            users={dummyProps.users}
+            messages={dummyProps.messages}/>
           </View>
 
           <View style={styles.helpContainer}>
