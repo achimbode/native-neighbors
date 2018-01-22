@@ -38,18 +38,18 @@ class Messages extends Component {
     );
     const { username } = this.props;
     const userColor = {backgroundColor: this.props.color};
-    const space = { whiteSpace:'pre' };
+    // const space = { whiteSpace:'pre' };
     const color = this.props.users[msg.from].avatar_color;
     const neighborColor = {backgroundColor: color};
     if (msg.from === username) return (
-      <View>
-      <Text style={userColor} key={i} className="userMsg">{msg.msg}</Text>
+      <View key={i}>
+      <Text style={userColor} className="userMsg">{msg.msg}</Text>
       <Text>Username</Text>
       </View>
     )
     else return (
       <View key={i} className="neighborsMsg" style={neighborColor}>
-        <Text style={space}>{msg.name} </Text>
+        <Text>{msg.name} </Text>
         <Text>{msg.msg}</Text>
         <Text>Other Mesg</Text>
       </View>
@@ -60,27 +60,6 @@ class Messages extends Component {
     // let debugInfo = this.debugRenderMessages(); if(debugInfo!==true) return debugInfo
     const { messages } = this.props
     return messages.map((msg, i) => this.renderMessage(msg, i));
-  }
-
-  debugRenderMessages = () => {
-    console.log('HERE',this.props)
-    if (!this.props) return (
-      <View>
-        <Text>NO props</Text>
-      </View>
-    );
-    if (!this.props.messages) return (
-      <View>
-        <Text>NO messages</Text>
-      </View>
-    );
-    const { messages } = this.props //.messages;
-    if (messages === undefined || messages.length === 0) return (
-      <View>
-        <Text>Something went wrong</Text>
-      </View>
-    );
-    return true
   }
 
   // renderTyping = () => {
@@ -122,6 +101,31 @@ class Messages extends Component {
       </View>
     );
   }
+
+  //////////////// debug stuff //////////////////
+
+
+    debugRenderMessages = () => {
+      console.log('HERE',this.props)
+      if (!this.props) return (
+        <View>
+          <Text>NO props</Text>
+        </View>
+      );
+      if (!this.props.messages) return (
+        <View>
+          <Text>NO messages</Text>
+        </View>
+      );
+      const { messages } = this.props //.messages;
+      if (messages === undefined || messages.length === 0) return (
+        <View>
+          <Text>Something went wrong</Text>
+        </View>
+      );
+      return true
+    }
+
 }
 
 // const mapStateToProps = (state) => ({
