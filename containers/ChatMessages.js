@@ -7,29 +7,6 @@ import {
   View,
 } from 'react-native';
 
-// const dummyProps = {
-//     username: 'Andrea',
-//     color: 'fuchsia',
-//     users: [
-//       'Andrea': {
-//         avatar_color: 'navy'
-//       },
-//       'Achim': {
-//         avatar_color: 'navy'
-//       },
-//     ],
-//     messages: [
-//       {
-//         from: 'Andrea',
-//         msg: 'hello Achim',
-//       },
-//       {
-//         from: 'Achim',
-//         msg: 'hello Andrea',
-//       }
-//     ]
-//   }
-
 class Messages extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +29,7 @@ class Messages extends Component {
   //   const maxScrollTop = scrollHeight - height;
   //   this.el.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   // }
-  
+
   renderMessage = (msg, i) => {
     if(!this.props.users[msg.from]) return (
       <View>
@@ -78,8 +55,14 @@ class Messages extends Component {
       </View>
     )
   }
-  
+
   renderMessages = () => {
+    // let debugInfo = this.debugRenderMessages(); if(debugInfo!==true) return debugInfo
+    const { messages } = this.props
+    return messages.map((msg, i) => this.renderMessage(msg, i));
+  }
+
+  debugRenderMessages = () => {
     console.log('HERE',this.props)
     if (!this.props) return (
       <View>
@@ -97,9 +80,9 @@ class Messages extends Component {
         <Text>Something went wrong</Text>
       </View>
     );
-    return messages.map((msg, i) => this.renderMessage(msg, i));
+    return true
   }
-  
+
   // renderTyping = () => {
     //   if(!this.props.isTyping) return null;
     //   else {
@@ -124,7 +107,7 @@ class Messages extends Component {
   //     else return;
   //   }
   // }
-  
+
   render() {
     return (
       <View className="MessagesContainer">
@@ -132,9 +115,10 @@ class Messages extends Component {
         <View className="Messages" ref={(el) => this.el = el}>
           {this.renderMessages()}
         </View>
-    <View className="IsTypingContainer">
-      <Text className="isTyping">this.renderTyping()</Text>
-    </View>
+        <View className="IsTypingContainer">
+          <Text className="isTyping">this.renderTyping()</Text>
+        </View>
+
       </View>
     );
   }
