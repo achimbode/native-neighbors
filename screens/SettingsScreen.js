@@ -1,6 +1,9 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 
+import { searchNeighbors } from '../api/serverApi';
+import NeighborsSearch from '../components/NeighborsSearch';
+import GoogleAutocomplete from '../components/placesAutocomplete';
 
 export default class SettingsScreen extends React.Component {
   constructor(props) {
@@ -45,17 +48,16 @@ export default class SettingsScreen extends React.Component {
   render() {
     let print = this.state.showResults === true ? this.renderResults() : 'Hi'
     return(
+      <View>
       <View className="HomePage">
         <Text id="Welcome">Welcome to Bubble! Sign up and start meeting your neighbors</Text>
-        {/* <View>{this.renderResults()}</View> */}
+        <View>{this.renderResults()}</View>
       </View>
-    )
+    <ScrollView>
+      <NeighborsSearch />
+    </ScrollView>
+    </View>)
   }
 }
 
-{/* <NeighborsSearch handleSearch={this.handleSearch} /> */}
-{/* <View>{print}</View> */}
 {/* {this.state.renderProgress !== null ? this.renderProgress() : ' '} */}
-// import { ExpoConfigView } from '@expo/samples';
-// import { searchNeighbors } from '../api/serverApi';
-// import NeighborsSearch from '../components/NeighborsSearch';

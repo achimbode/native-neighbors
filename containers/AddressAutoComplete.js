@@ -1,7 +1,9 @@
-import React , { Component } from 'react';
+import React, { Component } from 'react';
 import { Constants } from 'expo';
 import { View } from 'react-native';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'; // 1.2.12
+import {
+  GooglePlacesAutocomplete,
+} from 'react-native-google-places-autocomplete'; // 1.2.12
 
 const homePlace = {
   description: 'Home',
@@ -12,8 +14,14 @@ const workPlace = {
   geometry: { location: { lat: 48.8496818, lng: 2.2940881 } },
 };
 
-export default class GoogleAutocomplete extends Component {
+export default class AutoComplete extends Component {
+  
   render() {
+    const inputProps = {
+      value: this.state.address,
+      onChange: this.onChange,
+      placeholder: this.props.address || 'home address..'
+    }
     return (
       <View style={{ paddingTop: Constants.statusBarHeight, flex: 1 }}>
         <GooglePlacesAutocomplete
@@ -66,5 +74,5 @@ export default class GoogleAutocomplete extends Component {
         />
       </View>
     );
-  };
+  }
 };
