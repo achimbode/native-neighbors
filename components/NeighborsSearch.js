@@ -13,17 +13,23 @@ class NeighborsSearch extends Component {
 
   render() {
     return (
+          <ScrollView>
       <View className="NeighborsSearch">
         <View><Text>Check who is active in your building:</Text></View>
           <View id="SearchContainer">
         {/* <TextInput onSubmit={this.handleFormSubmit}>
         </TextInput> */}
-        <ScrollView>
           <GoogleAutocomplete />
-        </ScrollView>
-            <View><Button type="submit" id="SearchButton">Search</Button></View>
+            <View><Button
+              raised
+              icon={{ name: 'home', size: 32 }}
+              buttonStyle={{ backgroundColor: 'red', borderRadius: 10 }}
+              textStyle={{ textAlign: 'center' }}
+              title={`Sign In`}
+            /></View>
           </View>
       </View>
+        </ScrollView>
     );
   }
 

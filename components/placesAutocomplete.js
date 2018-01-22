@@ -13,7 +13,19 @@ const workPlace = {
 };
 
 export default class GoogleAutocomplete extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = { address: '' }
+    this.onChange = (address) => this.setState({ address })
+  }
+
   render() {
+    const inputProps = {
+      value: this.state.address,
+      onChange: this.onChange,
+      placeholder: this.props.address || 'home address..'
+    }
     return (
       <View style={{ paddingTop: Constants.statusBarHeight, flex: 1 }}>
         <GooglePlacesAutocomplete

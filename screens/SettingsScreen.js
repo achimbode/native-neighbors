@@ -10,6 +10,9 @@ export default class SettingsScreen extends React.Component {
     super(props);
     this.renderResults = this.renderResults.bind(this);
   }
+
+  // static navigatorStyle = {
+  // };
   
   state = {
     renderProgress: null,
@@ -19,7 +22,9 @@ export default class SettingsScreen extends React.Component {
   
   
   static navigationOptions = {
-    title: 'app.json',
+    header: null,
+
+    // title: 'app.json',
   };
   
   
