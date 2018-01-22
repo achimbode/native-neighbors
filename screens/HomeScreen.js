@@ -16,14 +16,16 @@ import Messages from '../containers/ChatMessages.js';
 const dummyProps = {
     username: 'Andrea',
     color: 'fuchsia',
-    users: [
+    users: {
+      
       'Andrea': {
         avatar_color: 'navy'
-      },
+      }
+      ,
       'Achim': {
         avatar_color: 'navy'
       },
-    ],
+    },
     messages: [
       {
         from: 'Andrea',
@@ -59,11 +61,17 @@ export default class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
 
             <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
               <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
             </View>
+          <View style={styles.helpContainer}>
+            <Messages
+            username={dummyProps.username}
+            color={dummyProps.color}
+            users={dummyProps.users}
+            messages={dummyProps.messages}/>
+          </View>
 
             <Text style={styles.getStartedText}>
               Change this text and your app will automatically reload.
@@ -76,13 +84,6 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.helpContainer}>
-            <Messages
-            username={dummyProps.username}
-            color={dummyProps.color}
-            users={dummyProps.users}
-            messages={dummyProps.messages}/>
-          </View>
 
           <View style={styles.helpContainer}>
             <Text style={styles.getStartedText}>

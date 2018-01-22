@@ -31,6 +31,12 @@ import {
 //   }
 
 class Messages extends Component {
+  constructor(props) {
+    super(props);
+    this.renderMessages = this.renderMessages.bind(this);
+    this.renderMessage = this.renderMessage.bind(this)
+    this.render = this.render.bind(this)
+  }
 
   // componentDidMount() {
   //   this.scrollToBottom();
@@ -46,57 +52,79 @@ class Messages extends Component {
   //   const maxScrollTop = scrollHeight - height;
   //   this.el.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   // }
-
+  
   renderMessage = (msg, i) => {
-    if(!this.props.users[msg.from]) return null;
+    if(!this.props.users[msg.from]) return (
+      <View>
+        <Text>NO user</Text>
+      </View>
+    );
     const { username } = this.props;
     const userColor = {backgroundColor: this.props.color};
     const space = { whiteSpace:'pre' };
     const color = this.props.users[msg.from].avatar_color;
     const neighborColor = {backgroundColor: color};
     if (msg.from === username) return (
+      <View>
       <Text style={userColor} key={i} className="userMsg">{msg.msg}</Text>
+      <Text>Username</Text>
+      </View>
     )
     else return (
       <View key={i} className="neighborsMsg" style={neighborColor}>
         <Text style={space}>{msg.name} </Text>
         <Text>{msg.msg}</Text>
+        <Text>Other Mesg</Text>
       </View>
     )
   }
-
+  
   renderMessages = () => {
-    if(!this.props.messages) return null;
-    const { messages } = this.props.messages;
-    if (messages === undefined || messages.length === 0) return null;
+    console.log('HERE',this.props)
+    if (!this.props) return (
+      <View>
+        <Text>NO props</Text>
+      </View>
+    );
+    if (!this.props.messages) return (
+      <View>
+        <Text>NO messages</Text>
+      </View>
+    );
+    const { messages } = this.props //.messages;
+    if (messages === undefined || messages.length === 0) return (
+      <View>
+        <Text>Something went wrong</Text>
+      </View>
+    );
     return messages.map((msg, i) => this.renderMessage(msg, i));
   }
-
+  
   // renderTyping = () => {
-  //   if(!this.props.isTyping) return null;
-  //   else {
-  //     var str = '';
-  //     var count = 0;
-  //     let obj = this.props.isTyping;
-  //     for (let key in obj) {
+    //   if(!this.props.isTyping) return null;
+    //   else {
+      //     var str = '';
+      //     var count = 0;
+      //     let obj = this.props.isTyping;
+      //     for (let key in obj) {
   //       if (obj.hasOwnProperty(key)) {
-  //         if (obj[key] === true) {
-  //           str+=key;
-  //           count++;
-  //           if (count > 0) str+=' & '
-  //         }
-  //       }
-  //     }
-  //   }
-  //   if (count === 0) return '';
+    //         if (obj[key] === true) {
+      //           str+=key;
+      //           count++;
+      //           if (count > 0) str+=' & '
+      //         }
+      //       }
+      //     }
+      //   }
+      //   if (count === 0) return '';
   //   else {
-  //     str = str.trim().substring(0, str.length - 2);
+    //     str = str.trim().substring(0, str.length - 2);
   //     if (count === 1) return `${str} is typing..`;
   //     if (count < 4 ) return `${str} are typing..`;
   //     else return;
   //   }
   // }
-
+  
   render() {
     return (
       <View className="MessagesContainer">
@@ -104,9 +132,9 @@ class Messages extends Component {
         <View className="Messages" ref={(el) => this.el = el}>
           {this.renderMessages()}
         </View>
-        <View className="IsTypingContainer">
-          <Text className="isTyping">this.renderTyping()</Text>
-        </View>
+    <View className="IsTypingContainer">
+      <Text className="isTyping">this.renderTyping()</Text>
+    </View>
       </View>
     );
   }
