@@ -6,14 +6,14 @@ import RootNavigation from './navigation/RootNavigation';
 // ------- orig ---------
 import { createStore } from 'redux'; // , applyMiddleware, compose
 import { Provider } from 'react-redux';
-// import { loadState, saveState } from './localStorage';
-// import socketMiddleware from './middlewares/socket';
+import { loadState, saveState } from './localStorage';
+import socketMiddleware from './middlewares/socket';
 import reducer from './reducers';
 
 const store = createStore(
   reducer,
-  // persistedState,
-  // composeEnhancers(applyMiddleware(socketMiddleware))
+  persistedState,
+  composeEnhancers(applyMiddleware(socketMiddleware))
 );
 
 export default class App extends React.Component {
