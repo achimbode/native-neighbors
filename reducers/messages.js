@@ -1,14 +1,14 @@
 const messages = (state = [], action) => {
-  switch (action.type) {
+    switch (action.type) {
     case 'REFRESH_MESSAGES':
-      return action.data
+        return action.data;
     case 'GET-MESSAGES':
-      return action.data
+        return action.data;
     case 'USER_DELETED_ACCOUNT':
-      return {}
+        return {};
     default:
-      return state;
-  }
+        return state;
+    }
 };
 
 export default messages;
