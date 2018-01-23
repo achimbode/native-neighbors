@@ -1,7 +1,7 @@
 import 'react-native';
 import React from 'react';
 import messagesReducer from '../../reducers/messages.js';
-import { MockActions } from '../mocks/reducers-test-mocks.js';
+import { MockActions } from '../__mocks__/action-mocks.js'; ///Users/achim/codeworks/native-neighbors/actions/__mocks__/action-mocks.js
 
 let mockActions = new MockActions()
 
