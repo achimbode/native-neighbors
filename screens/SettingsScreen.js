@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View, Text } from 'react-native';
 
 import { searchNeighbors } from '../api/serverApi';
 import NeighborsSearch from '../components/NeighborsSearch';
-import GoogleAutocomplete from '../components/placesAutocomplete';
+// import GoogleAutocomplete from '../components/placesAutocomplete';
 
 export default class SettingsScreen extends React.Component {
   constructor(props) {
@@ -58,7 +58,7 @@ export default class SettingsScreen extends React.Component {
         <Text id="Welcome">Welcome to Bubble! Sign up and start meeting your neighbors</Text>
         <View>{this.renderResults()}</View>
       </View>
-    <ScrollView>
+        <ScrollView style={{ marginTop: 200 }}>
       <NeighborsSearch />
     </ScrollView>
     </View>)

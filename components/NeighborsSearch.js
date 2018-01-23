@@ -13,8 +13,8 @@ class NeighborsSearch extends Component {
 
   render() {
     return (
-          <ScrollView>
       <View className="NeighborsSearch">
+          <ScrollView>
         <View><Text>Check who is active in your building:</Text></View>
           <View id="SearchContainer">
         {/* <TextInput onSubmit={this.handleFormSubmit}>
@@ -26,10 +26,12 @@ class NeighborsSearch extends Component {
               buttonStyle={{ backgroundColor: 'red', borderRadius: 10 }}
               textStyle={{ textAlign: 'center' }}
               title={`Sign In`}
-            /></View>
+              /></View>
           </View>
-      </View>
         </ScrollView>
+              
+        <View style={{ paddingTop: 100 }}><Button/></View>
+      </View>
     );
   }
 
