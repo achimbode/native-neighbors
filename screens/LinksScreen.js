@@ -1,18 +1,35 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, TextInput } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
+import DoneBar from 'done-bar';
 
 export default class LinksScreen extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {text: 'hi there'}
+  }
   static navigationOptions = {
     title: 'Links',
   };
 
   render() {
+    const inputStyle = {marginLeft:5, marginRight:5, padding:10, borderColor: 'gray', borderWidth: 1}
     return (
       <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
+       <View>
+        <TextInput
+           onChangeText={(text) => this.setState({text})}
+           value={this.state.text}
+           style={inputStyle}
+           multiline={true}
+           editable={true}
+         />
+         <DoneBar
+          keyboardType={this.state.keyboardType}
+          onDone={() => console.log('done! :' + this.state.text)}
+         />
+        </View>
       </ScrollView>
     );
   }

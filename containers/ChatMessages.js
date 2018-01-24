@@ -42,13 +42,13 @@ class Messages extends Component {
     const color = this.props.users[msg.from].avatar_color;
     const neighborColor = {backgroundColor: color};
     if (msg.from === username) return (
-      <View key={i}>
-      <Text style={userColor} className="userMsg">{msg.msg}</Text>
+      <View className="speechBubble userMsg" key={i} style={bubbleStyles.speechBubbleUser}>
+      <Text style={userColor}>{msg.msg}</Text>
       <Text>Username</Text>
       </View>
     )
     else return (
-      <View key={i} className="neighborsMsg" style={neighborColor}>
+      <View key={i} className="speechBubble otherMsg" style={bubbleStyles.speechBubbleOther}>
         <Text>{msg.name} </Text>
         <Text>{msg.msg}</Text>
         <Text>Other Mesg</Text>
@@ -127,6 +127,40 @@ class Messages extends Component {
     }
 
 }
+
+const bubbleStyles = StyleSheet.create({
+  'speechBubbleUser': {
+    backgroundColor: '#00aabb',
+    borderRadius: 10,
+    padding: 5,
+    marginLeft: 20,
+    marginBottom: 15,
+  },
+  'speechBubbleOther': {
+    backgroundColor: '#bbaa33',
+    borderRadius: 10,
+    padding: 5,
+    marginRight: 20,
+    marginBottom: 15,
+  }
+  // 'speech-bubble:after': {
+  //     content: '',
+  //     position: 'absolute',
+  //     bottom: 0,
+  //     left: 5,
+  //     width: 0,
+  //     height: 0,
+  //     borderWidth: 20,
+  //     borderStyle: 'solid',
+  //     borderColor: 'transparent',
+  //     borderTopColor: '#00aabb',
+  //     borderBottom: 0,
+  //     borderLeft: 0,
+  //     marginLeft: -10,
+  //     marginBottom: -20,
+  // }
+})
+
 
 // const mapStateToProps = (state) => ({
 //   users: state.users,
