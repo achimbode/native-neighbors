@@ -18,7 +18,7 @@ const store = createStore(
 
 export default class App extends React.Component {
   state = {
-    isLoadingComplete: false,
+    isLoadingComplete: false, 
   };
 
   render() {
