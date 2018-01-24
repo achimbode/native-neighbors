@@ -62,30 +62,30 @@ class Messages extends Component {
     return messages.map((msg, i) => this.renderMessage(msg, i));
   }
 
-  // renderTyping = () => {
-    //   if(!this.props.isTyping) return null;
-    //   else {
-      //     var str = '';
-      //     var count = 0;
-      //     let obj = this.props.isTyping;
-      //     for (let key in obj) {
-  //       if (obj.hasOwnProperty(key)) {
-    //         if (obj[key] === true) {
-      //           str+=key;
-      //           count++;
-      //           if (count > 0) str+=' & '
-      //         }
-      //       }
-      //     }
-      //   }
-      //   if (count === 0) return '';
-  //   else {
-    //     str = str.trim().substring(0, str.length - 2);
-  //     if (count === 1) return `${str} is typing..`;
-  //     if (count < 4 ) return `${str} are typing..`;
-  //     else return;
-  //   }
-  // }
+  renderTyping = () => {
+      if(!this.props.isTyping) return null;
+      else {
+          var str = '';
+          var count = 0;
+          let obj = this.props.isTyping;
+          for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if (obj[key] === true) {
+                str+=key;
+                count++;
+                if (count > 0) str+=' & '
+              }
+            }
+          }
+        }
+        if (count === 0) return '';
+    else {
+        str = str.trim().substring(0, str.length - 2);
+      if (count === 1) return `${str} is typing..`;
+      if (count < 4 ) return `${str} are typing..`;
+      else return;
+    }
+  }
 
   render() {
     return (
@@ -95,7 +95,7 @@ class Messages extends Component {
           {this.renderMessages()}
         </View>
         <View className="IsTypingContainer">
-          <Text className="isTyping">this.renderTyping()</Text>
+          <Text className="isTyping">{this.renderTyping()}</Text>
         </View>
 
       </View>

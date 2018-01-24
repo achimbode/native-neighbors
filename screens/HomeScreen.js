@@ -12,11 +12,17 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 import ContentEntry from '../components/ContentEntry';
-import Messages from '../containers/ChatMessages.js';
+import ChatMessages from '../containers/ChatMessages.js';
 import dummyProps from '../__snapshots__/dummyProps.js'
 
 
 export default class HomeScreen extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = dummyProps
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -38,11 +44,11 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.getStartedContainer}>
             <View style={styles.helpContainer}>
-              <Messages
-                username={dummyProps.username}
-                color={dummyProps.color}
-                users={dummyProps.users}
-                messages={dummyProps.messages}
+              <ChatMessages
+                username={this.state.username}
+                color={this.state.color}
+                users={this.state.users}
+                messages={this.state.messages}
               />
             </View>
 
@@ -77,6 +83,15 @@ export default class HomeScreen extends React.Component {
 
   messageCompleted = (message) => {
     console.log('messageCompleted: ' + message);
+    this.setState({
+      messages: [
+        ...this.state.messages,
+        {
+          from: this.state.username,
+          msg: message,
+        }
+      ]
+    })
   }
 
   _maybeRenderDevelopmentModeWarning() {
