@@ -40,18 +40,17 @@ class Messages extends Component {
     const userColor = {backgroundColor: this.props.color};
     // const space = { whiteSpace:'pre' };
     const color = this.props.users[msg.from].avatar_color;
-    const neighborColor = {backgroundColor: color};
+    const messageTextBgColor = {backgroundColor: 'white'};
     if (msg.from === username) return (
-      <View key={i}>
-      <Text style={userColor} className="userMsg">{msg.msg}</Text>
-      <Text>Username</Text>
+      <View className="speechBubble userMsg" key={i} style={bubbleStyles.speechBubbleUser}>
+        <Text style={messageTextBgColor}>{msg.msg}</Text>
+        <Text>{this.props.username}</Text>
       </View>
     )
     else return (
-      <View key={i} className="neighborsMsg" style={neighborColor}>
-        <Text>{msg.name} </Text>
-        <Text>{msg.msg}</Text>
-        <Text>Other Mesg</Text>
+      <View key={i} className="speechBubble otherMsg" style={bubbleStyles.speechBubbleOther}>
+        <Text style={messageTextBgColor}>{msg.msg}</Text>
+        <Text>Achim</Text>
       </View>
     )
   }
@@ -62,30 +61,30 @@ class Messages extends Component {
     return messages.map((msg, i) => this.renderMessage(msg, i));
   }
 
-  // renderTyping = () => {
-    //   if(!this.props.isTyping) return null;
-    //   else {
-      //     var str = '';
-      //     var count = 0;
-      //     let obj = this.props.isTyping;
-      //     for (let key in obj) {
-  //       if (obj.hasOwnProperty(key)) {
-    //         if (obj[key] === true) {
-      //           str+=key;
-      //           count++;
-      //           if (count > 0) str+=' & '
-      //         }
-      //       }
-      //     }
-      //   }
-      //   if (count === 0) return '';
-  //   else {
-    //     str = str.trim().substring(0, str.length - 2);
-  //     if (count === 1) return `${str} is typing..`;
-  //     if (count < 4 ) return `${str} are typing..`;
-  //     else return;
-  //   }
-  // }
+  renderTyping = () => {
+      if(!this.props.isTyping) return null;
+      else {
+          var str = '';
+          var count = 0;
+          let obj = this.props.isTyping;
+          for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if (obj[key] === true) {
+                str+=key;
+                count++;
+                if (count > 0) str+=' & '
+              }
+            }
+          }
+        }
+        if (count === 0) return '';
+    else {
+        str = str.trim().substring(0, str.length - 2);
+      if (count === 1) return `${str} is typing..`;
+      if (count < 4 ) return `${str} are typing..`;
+      else return;
+    }
+  }
 
   render() {
     return (
@@ -95,7 +94,7 @@ class Messages extends Component {
           {this.renderMessages()}
         </View>
         <View className="IsTypingContainer">
-          <Text className="isTyping">this.renderTyping()</Text>
+          <Text className="isTyping">{this.renderTyping()}</Text>
         </View>
 
       </View>
@@ -127,6 +126,40 @@ class Messages extends Component {
     }
 
 }
+
+const bubbleStyles = StyleSheet.create({
+  'speechBubbleUser': {
+    backgroundColor: '#00aabb',
+    borderRadius: 10,
+    padding: 5,
+    marginLeft: 20,
+    marginBottom: 15,
+  },
+  'speechBubbleOther': {
+    backgroundColor: '#bbaa33',
+    borderRadius: 10,
+    padding: 5,
+    marginRight: 20,
+    marginBottom: 15,
+  }
+  // 'speech-bubble:after': {
+  //     content: '',
+  //     position: 'absolute',
+  //     bottom: 0,
+  //     left: 5,
+  //     width: 0,
+  //     height: 0,
+  //     borderWidth: 20,
+  //     borderStyle: 'solid',
+  //     borderColor: 'transparent',
+  //     borderTopColor: '#00aabb',
+  //     borderBottom: 0,
+  //     borderLeft: 0,
+  //     marginLeft: -10,
+  //     marginBottom: -20,
+  // }
+})
+
 
 // const mapStateToProps = (state) => ({
 //   users: state.users,

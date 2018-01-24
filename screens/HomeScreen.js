@@ -11,34 +11,18 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
-import Messages from '../containers/ChatMessages.js';
+import ContentEntry from '../components/ContentEntry';
+import ChatMessages from '../containers/ChatMessages.js';
+import dummyProps from '../__snapshots__/dummyProps.js'
 
-const dummyProps = {
-    username: 'Andrea',
-    color: 'fuchsia',
-    users: {
-      
-      'Andrea': {
-        avatar_color: 'navy'
-      }
-      ,
-      'Achim': {
-        avatar_color: 'navy'
-      },
-    },
-    messages: [
-      {
-        from: 'Andrea',
-        msg: 'hello Achim',
-      },
-      {
-        from: 'Achim',
-        msg: 'hello Andrea',
-      }
-    ]
-  }
 
 export default class HomeScreen extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = dummyProps
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -59,19 +43,14 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
+            <View style={styles.helpContainer}>
+              <ChatMessages
+                username={this.state.username}
+                color={this.state.color}
+                users={this.state.users}
+                messages={this.state.messages}
+              />
             </View>
-          <View style={styles.helpContainer}>
-            <Messages
-            username={dummyProps.username}
-            color={dummyProps.color}
-            users={dummyProps.users}
-            messages={dummyProps.messages}/>
-          </View>
 
             <Text style={styles.getStartedText}>
               Change this text and your app will automatically reload.
@@ -84,23 +63,35 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>
 
-
-          <View style={styles.helpContainer}>
-            <Text style={styles.getStartedText}>
-              Added a store, honey
-            </Text>
-          </View>
+        </ScrollView>
+        <ScrollView>
+          <ContentEntry doneHandler={this.messageCompleted} />
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
+
+        {/*<View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
-        </View>
+        </View>S*/}
       </View>
     );
+  }
+
+
+  messageCompleted = (message) => {
+    console.log('messageCompleted: ' + message);
+    this.setState({
+      messages: [
+        ...this.state.messages,
+        {
+          from: this.state.username,
+          msg: message,
+        }
+      ]
+    })
   }
 
   _maybeRenderDevelopmentModeWarning() {
