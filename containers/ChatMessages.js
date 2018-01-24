@@ -40,18 +40,17 @@ class Messages extends Component {
     const userColor = {backgroundColor: this.props.color};
     // const space = { whiteSpace:'pre' };
     const color = this.props.users[msg.from].avatar_color;
-    const neighborColor = {backgroundColor: color};
+    const messageTextBgColor = {backgroundColor: 'white'};
     if (msg.from === username) return (
       <View className="speechBubble userMsg" key={i} style={bubbleStyles.speechBubbleUser}>
-      <Text style={userColor}>{msg.msg}</Text>
-      <Text>Username</Text>
+        <Text style={messageTextBgColor}>{msg.msg}</Text>
+        <Text>{this.props.username}</Text>
       </View>
     )
     else return (
       <View key={i} className="speechBubble otherMsg" style={bubbleStyles.speechBubbleOther}>
-        <Text>{msg.name} </Text>
-        <Text>{msg.msg}</Text>
-        <Text>Other Mesg</Text>
+        <Text style={messageTextBgColor}>{msg.msg}</Text>
+        <Text>Achim</Text>
       </View>
     )
   }
