@@ -9,30 +9,36 @@ import {
 } from 'react-native';
 import DoneBar from 'done-bar';
 
-const inputStyle = {marginLeft:5, marginRight:5, padding:10, borderColor: 'gray', borderWidth: 1}
+const inputStyle = {marginLeft:5, marginRight:5, padding:10, borderColor: 'gray', borderWidth: 10}
 
 class ContentEntry extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {text: ''}
+    this.state = {
+      text: '',
+      keyboardType: 'default',
+    }
   }
 
   render = () => {
-    let inputStyle = this.props.inputStyle || inputStyle
+    // let inputStyle = this.props.inputStyle || inputStyle
+    console.log(this.props.doneHandler);
     return (
       <View>
         <TextInput
           placeholder = "Add new message"
-          value = {this.state.text}
+          defaultValue = {this.state.text}
+          onChangeText={(text) => this.setState({text})}
           style = {inputStyle}
           multiline = {true}
           editable = {true}
           numberOfLines = {4}
         />
         <DoneBar
+          onDone={()=>this.props.doneHandler(this.state.text)}
           keyboardType={this.state.keyboardType}
-          onDone={this.props.doneHandler}
+          includeLayoutAnimation={false}
         />
       </View>
     )
