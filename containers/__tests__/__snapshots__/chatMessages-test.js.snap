@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages should render correctly 1`] = `
+<View
+  className="MessagesContainer"
+>
+  <View
+    className="Messages"
+  >
+    <View
+      key="0"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        className="userMsg"
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "fuchsia",
+          }
+        }
+      >
+        hello Achim
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Username
+      </Text>
+    </View>
+    <View
+      className="neighborsMsg"
+      key="1"
+      style={
+        Object {
+          "backgroundColor": "navy",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+         
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        hello Andrea
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Other Mesg
+      </Text>
+    </View>
+  </View>
+  <View
+    className="IsTypingContainer"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      className="isTyping"
+      ellipsizeMode="tail"
+    >
+      this.renderTyping()
+    </Text>
+  </View>
+</View>
+`;
